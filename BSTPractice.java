@@ -6,8 +6,6 @@ import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
 /********************************************************************
-Written by:
-
 ASSIGNMENT:  Write a program that does the following:
 	- uses your changeJOP method to change the colors & fonts
 		to something I can read.
