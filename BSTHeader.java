@@ -1,8 +1,6 @@
 import javax.swing.JOptionPane;
 
 /********************************************************************
-Written by: Ramsey Hatoum
-
 ASSIGNMENT:  Write a binary search tree class. 
 
 Your class should have the following:
