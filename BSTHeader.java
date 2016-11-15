@@ -1,6 +1,8 @@
 import javax.swing.JOptionPane;
 
 /********************************************************************
+Written by: Ramsey Hatoum
+
 ASSIGNMENT:  Write a binary search tree class. 
 
 Your class should have the following:
@@ -176,7 +178,7 @@ public class BSTHeader<T extends Comparable<T>>
 		{
 			return(post += doPostorder(t.getLeft()) +
 			doPostorder(t.getRight()) +
-			t.getValue());
+			t.getValue() );
 		}
 		return ""; 
 	}
@@ -193,7 +195,7 @@ public class BSTHeader<T extends Comparable<T>>
 		{
 			return(in += doInorder(t.getLeft()) +
 			t.getValue() +
-			doInorder(t.getRight()));
+			doInorder(t.getRight()) );
 		}
 		return ""; 
 	}
@@ -207,31 +209,46 @@ public class BSTHeader<T extends Comparable<T>>
 	
 	private void deleteOneChild(TreeNode<T> back, TreeNode<T> trav) 
 	{	
-		if(back.getRight() != null) 
-			back.setRight(trav.getRight());
+		TreeNode<T> child = null;
+		boolean isLeft = (trav == back.getLeft());
+		
+		if(trav.getRight() == null) 
+			child = trav.getLeft();
 		else 
-			back.setRight(trav.getLeft());
+			child = trav.getRight();
+	
+		if(trav == back) {
+			if(isLeft) {
+				back.setValue(trav.getValue());
+				back.setLeft(trav.getLeft());
+			}
+			else {
+				back.setValue(trav.getValue());
+				back.setRight(trav.getLeft());
+			}
+		}
+		else {
+			if(back.getLeft() == trav) 
+				back.setLeft(child);
+			else 
+				back.setRight(child);
+		}
+		
 	}
 	
 	private void deleteTwoChildren(TreeNode<T> back, TreeNode<T> trav) {
-		TreeNode<T> b2 = trav, t2 = trav;
+		boolean isLeft = (trav == back.getLeft());
 
-		if (trav.getLeft() != null && trav.getRight() != null) {
-			b2 = trav.getRight();
-			if(b2.getLeft() != null) 
-				t2 = b2.getLeft();
-			else
-				t2 = b2.getRight();	
-		}
-					
-		trav.setValue(t2.getValue());
-		
-		if(b2.getLeft() == t2 && b2.getLeft() != null) 
-			b2.setLeft(t2.getRight());
-		else if(b2.getLeft() == t2) 
-			b2.setLeft(null);
-		else 
-			b2.setRight(null);
+		if (isLeft)
+        {
+            back.setLeft(trav.getRight());
+            back.getLeft().setLeft(trav.getLeft());
+        }
+        else
+        {
+            back.setRight(trav.getRight());
+            back.getRight().setLeft(trav.getLeft());
+        }
 	}
 	
 }
