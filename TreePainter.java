@@ -2,9 +2,6 @@
  * TreePainter.java
  *
  *Steven Moskovchenko
- *Winston Churchill High School
- *December 4, 2003
- *Period 2 APCS, Ms. Steelman
  *
  *
  *A program to draw visual representations of binary trees.
